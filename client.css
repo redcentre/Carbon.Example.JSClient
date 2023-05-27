@@ -1,0 +1,25 @@
+﻿body { padding: 0; margin: 0; background-color: gainsboro; }
+table { border-collapse: collapse; }
+.DivHead { background-color: steelblue; color: white; padding: 0.2em 0.4em; }
+.TabHead { width: 100%; }
+  .TabHead td:nth-child(1) { font-size: 150%; }
+  .TabHead td:nth-child(2) span { color: lightyellow; font-size: 110%; margin-right: 0.4em; }
+  .TabHead td:nth-child(2) select { padding: 1px 6px 2px 4px; }
+
+.CardOuter { box-shadow: 5px 5px 5px silver; }
+.CardBody { background-color: ghostwhite; padding: 0.6em 2em 0.2em 2em; }
+.LinOuter { display: grid; grid-template-columns: 25em 1fr; }
+.LinTab { }
+  .LinTab td { padding: 6px 0.6em 0 0; }
+  .LinTab button { min-width: 6em; }
+#TextId, #TextPass { width: 12em; }
+#DivOverview { font-size: 90%; }
+
+.SpecTab { }
+  .SpecTab label { margin-right: 0.5em; }
+  .SpecTab td { padding: 6px 0.6em 0 0; }
+  .SpecTab button { min-width: 6em; }
+
+.JobOuter { display: grid; grid-template-columns: 25em 1fr; }
+.DivSpin { text-align: center; margin: auto; }
+.BusyOuter { z-index: 9999; position: absolute; width: 280px; left: 42%; top: 40%; padding: 1em; background-color: #333333; color: white; border: 0px solid darkred; }
