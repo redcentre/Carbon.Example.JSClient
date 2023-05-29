@@ -23,14 +23,15 @@ table { border-collapse: collapse; }
 
 .JobOuter { display: grid; grid-template-columns: 25em 1fr 22em; }
 
-#DivVariables { max-height: 18em; overflow: scroll; }
+#DivVariables { max-height: 18em; overflow-x: scroll; }
 .VarTab { background-color: white; font-size: 80%; width: 100%; }
   .VarTab th { font-weight: normal; background-color: gainsboro; }
   .VarTab td { }
   .VarTab th, .VarTab td { padding: 0 4px; }
   .VarTab tr:nth-child(odd) { background-color: aliceblue; }
 
-#PreReport { font-size:80%; }
+#PreReport { font-size:80%; overflow:scroll; }
+#DivHtml { font-size: 80%; overflow: scroll; }
 
 .DivSpin { text-align: center; margin: auto; }
 .BusyOuter { z-index: 9999; position: absolute; width: 280px; left: 42%; top: 40%; padding: 1em; background-color: #333333; color: white; border: 0px solid darkred; }

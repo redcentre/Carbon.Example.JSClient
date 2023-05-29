@@ -17,6 +17,14 @@ var elemDivBusy;
 var elemBusyMsg;
 var elemDivVariables;
 var elemSelVariables;
+var elemTop;
+var elemSide;
+var elemFilter;
+var elemWeight;
+var elemFormat;
+var elemPreReport;
+var elemDivHtml;
+var elemSelTrees;
 
 let getOpts = null;
 let postOpts = null;
@@ -77,6 +85,14 @@ function pageLoaded() {
     elemBusyMsg = document.getElementById("BusyMsg");
     elemDivVariables = document.getElementById("DivVariables");
     elemSelVariables = document.getElementById("SelVariables");
+    elemTop = document.getElementById("TextTop");
+    elemSide = document.getElementById("TextSide");
+    elemFilter = document.getElementById("TextFilter");
+    elemWeight = document.getElementById("TextWeight");
+    elemFormat = document.getElementById("SelFormat");
+    elemPreReport = document.getElementById("PreReport");
+    elemDivHtml = document.getElementById("DivHtml");
+    elemSelTrees = document.getElementById("SelTrees");
     getInfo();
 }
 // ══════════════════════════════════════════════════════════════════════
@@ -239,6 +255,16 @@ function openJob(reason) {
         tocType: 1,
         getDrills: true
     };
+    elemDivLoginErr.hidden = true;
+    elemDivVariables.innerHTML = null;
+    elemDivHtml.innerHTML = null;
+    elemPreReport.hidden = true;
+    elemDivReport.hidden = true;
+    elemTop.value = null;
+    elemSide.value = null;
+    elemFilter.value = null;
+    elemWeight.value = null;
+    elemSelTrees.options.length = 0;
     postOpts.body = JSON.stringify(openReq);
     showBusy(`Opening Customer ${custName} Job ${jobName}`);
     const url = `${elemSelServer.value}/job/open`;
@@ -247,22 +273,19 @@ function openJob(reason) {
             if (response.status == 200) {
                 jobdata = await response.json();
                 console.log(jobdata);
-                var elemTrees = document.getElementById("SelTrees");
-                elemTrees.options.length = 0;
+                //elemSelTrees.options.length = 0;
                 jobdata.vartreeNames.forEach(v => {
                     var option = document.createElement("option");
                     option.value = `V-${v}`;
                     option.innerHTML = `🔴 ${v}`;
-                    elemTrees.add(option);
+                    elemSelTrees.add(option);
                 })
                 jobdata.axisTreeNames.forEach(v => {
                     var option = document.createElement("option");
                     option.value = `A-${v}`;
                     option.innerHTML = `📐 ${v}`;
-                    elemTrees.add(option);
+                    elemSelTrees.add(option);
                 })
-                elemDivLoginErr.hidden = true;
-                elemDivVariables.innerHTML = null;
             }
             else {
                 let errjson = await response.json();
@@ -338,11 +361,6 @@ function getVartreeNodes() {
 }
 // ══════════════════════════════════════════════════════════════════════
 function genTab() {
-    var elemTop = document.getElementById("TextTop");
-    var elemSide = document.getElementById("TextSide");
-    var elemFilter = document.getElementById("TextFilter");
-    var elemWeight = document.getElementById("TextWeight");
-    var elemFormat = document.getElementById("SelFormat");
     const formatNum = elemFormat.value;
     const formatName = elemFormat.options[elemFormat.selectedIndex].text;
     console.log(`format ${formatNum} | ${formatName}`);
@@ -380,8 +398,6 @@ function genTab() {
                 }
                 elemDivLoginErr.hidden = true;
                 elemDivReport.hidden = false;
-                var elemPreReport = document.getElementById("PreReport");
-                var elemDivHtml = document.getElementById("DivHtml");
                 if (formatNum == 6) {
                     // Show the rendered HTML report.
                     elemPreReport.hidden = true;
