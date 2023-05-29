@@ -5,3 +5,5 @@ This repository contains an example HTML5 client application that calls the Carb
 The example page can be previewed at this address:
 
 ### <https://rcsapps.azurewebsites.net/jsclient>
+
+:memo: *Note that the application only consists of 3 core files (html, css and js). The other files in the repository only exist so that the folder can be opened in Visual Studio 2022 and provide colourisation and intellisense when editing the core files.*
