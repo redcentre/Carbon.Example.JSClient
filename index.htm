@@ -9,6 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="client.css">
   <script src="client.js"></script>
+  <meta data-build-version="1.0.0" />
+  <meta data-build-time="2023-05-29 11:50 GMT+10" />
 </head>
 <body onload="pageLoaded();">
 
@@ -60,10 +62,10 @@
               Developers can evolve this example into a more sophisticated application, perhaps using one of the popular JS frameworks.
             </div>
             <div id="DivLoginOK" class="alert alert-success mt-3" hidden>
-              Logged in information
+              Logged in information will be displayed here
             </div>
-            <div id="DivLoginErr" class="alert alert-warning mt-3" hidden>
-              Incorrect login credentials
+            <div id="DivLoginErr" class="alert alert-danger mt-3" hidden>
+              Error messages will be displayed here
             </div>
           </div>
         </div>
@@ -76,8 +78,11 @@
           <div class="form-group pr-4">
             <label for="SelJob" id="LabelJobPick">Customer - Job</label>
             <select class="form-control" id="SelJob" onchange="jobPickChanged()"></select>
-            <label for="ListTrees" id="LabelListTrees" class="mt-2">Variable and Axis Trees</label>
-            <select class="form-control" id="ListTrees" size="6"></select>
+            <label for="SelTrees" id="LabelSelTrees" class="mt-2">Variable and Axis Trees</label>
+            <select class="form-control" id="SelTrees" size="6" onchange="treePickChanged()"></select>
+          </div>
+          <div id="DivVariables" style="border-left: 1px solid silver;">
+            <!-- A table is inserted here -->
           </div>
           <div class="form-group pl-4" style="border-left: 1px solid silver;">
             <table class="SpecTab">
@@ -98,6 +103,19 @@
                 <td><input type="text" class="form-control" id="TextWeight" maxlength="128"></td>
               </tr>
               <tr>
+                <td><label for="SelFormat">Format</label></td>
+                <td><select id="SelFormat">
+                  <option value="1">TSV</option>
+                  <option value="2">CSV</option>
+                  <option value="3">SSV</option>
+                  <option value="5">XML</option>
+                  <option value="6">HTML</option>
+                  <option value="7">OXT</option>
+                  <option value="8">OXTNums</option>
+                  <option value="10">MultiCube</option>
+                  </select></td>
+              </tr>
+              <tr>
                 <td></td>
                 <td>
                   <button id="BtnRun" class="btn btn-primary mt-2" onclick="runClick()">Run</button>
@@ -116,7 +134,7 @@
 
     <div id="DivReport" class="card m-3 CardOuter" hidden>
       <div class="card-body CardBody">
-        Report will display here
+        <pre id="PreReport"/>
       </div>
     </div>
 

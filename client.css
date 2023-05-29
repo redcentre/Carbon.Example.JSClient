@@ -19,7 +19,18 @@ table { border-collapse: collapse; }
   .SpecTab label { margin-right: 0.5em; }
   .SpecTab td { padding: 6px 0.6em 0 0; }
   .SpecTab button { min-width: 6em; }
+  .SpecTab input { width: 15em; }
 
-.JobOuter { display: grid; grid-template-columns: 25em 1fr; }
+.JobOuter { display: grid; grid-template-columns: 25em 1fr 22em; }
+
+#DivVariables { max-height: 18em; overflow: scroll; }
+.VarTab { background-color: white; font-size: 80%; width: 100%; }
+  .VarTab th { font-weight: normal; background-color: gainsboro; }
+  .VarTab td { }
+  .VarTab th, .VarTab td { padding: 0 4px; }
+  .VarTab tr:nth-child(odd) { background-color: aliceblue; }
+
+#PreReport { font-size:80%; }
+
 .DivSpin { text-align: center; margin: auto; }
 .BusyOuter { z-index: 9999; position: absolute; width: 280px; left: 42%; top: 40%; padding: 1em; background-color: #333333; color: white; border: 0px solid darkred; }
