@@ -37,12 +37,12 @@
             <table class="LinTab">
               <tr>
                 <td><label for="TextId">Account Id</label></td>
-                <td><input type="text" class="form-control" id="TextId" maxlength="10" oninput="idChanged()" value="10000016" disabled></td>
+                <td><input type="text" class="form-control" id="TextId" maxlength="10" oninput="idChanged()" value="16499372" disabled></td>
                 <td><img src="img/no-input-16.png" id="ImgId" /></td>
               </tr>
               <tr>
                 <td><label for="TextPass">Password</label></td>
-                <td><input type="password" class="form-control" id="TextPass" maxlength="32" oninput="passChanged()" value="Cats4Sleeping" disabled></td>
+                <td><input type="password" class="form-control" id="TextPass" maxlength="32" oninput="passChanged()" value="C6H12O6" disabled></td>
                 <td><img src="img/no-input-16.png" id="ImgPass" /></td>
               </tr>
               <tr>
@@ -113,6 +113,7 @@
                   <option value="7">OXT</option>
                   <option value="8">OXTNums</option>
                   <option value="10">MultiCube</option>
+                  <option value="990">JSON</option>
                   </select></td>
               </tr>
               <tr>
@@ -134,7 +135,10 @@
 
     <div id="DivReport" class="card m-3 CardOuter" hidden>
       <div class="card-body CardBody">
-        <pre id="PreReport"/>
+        <pre id="PreReport"></pre>
+        <div id="DivHtml">
+          <p>HTML will display here</p>
+        </div>
       </div>
     </div>
 

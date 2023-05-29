@@ -353,7 +353,7 @@ function genTab() {
         level: null
     };
     const gentabReq = {
-        name: "JSReport",
+        name: `${elemTop.value} × ${elemSide.value}`,
         top: elemTop.value,
         side: elemSide.value,
         filter: elemFilter.value,
@@ -365,15 +365,35 @@ function genTab() {
     console.log(gentabReq);
     postOpts.body = JSON.stringify(gentabReq);
     showBusy(`Generating report`);
-    const url = `${elemSelServer.value}/report/gentab/text/${formatName}`;
+    const url = formatNum == 990 ? `${elemSelServer.value}/report/gentab/pandas/1` : `${elemSelServer.value}/report/gentab/text/${formatName}`;
     fetch(url, postOpts)
         .then(async response => {
             if (response.status == 200) {
-                const textbody = await response.text();
+                let textbody = null;
+                if (formatNum == 990) {
+                    const json = await response.json();
+                    textbody = JSON.stringify(json, null, 4);
+                    console.log("JSON");
+                }
+                else {
+                    textbody = await response.text();
+                }
                 elemDivLoginErr.hidden = true;
                 elemDivReport.hidden = false;
                 var elemPreReport = document.getElementById("PreReport");
-                elemPreReport.innerText = textbody;
+                var elemDivHtml = document.getElementById("DivHtml");
+                if (formatNum == 6) {
+                    // Show the rendered HTML report.
+                    elemPreReport.hidden = true;
+                    elemDivHtml.hidden = false;
+                    elemDivHtml.innerHTML = textbody;
+                }
+                else {
+                    // Other plain text report formats.
+                    elemPreReport.hidden = false;
+                    elemDivHtml.hidden = true;
+                    elemPreReport.innerText = textbody;
+                }
             }
             else {
                 let errjson = await response.json();
