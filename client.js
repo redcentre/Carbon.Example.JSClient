@@ -371,7 +371,6 @@ function genTab() {
             if (response.status == 200) {
                 const textbody = await response.text();
                 elemDivLoginErr.hidden = true;
-                elemDivVariables.innerHTML = null;
                 elemDivReport.hidden = false;
                 var elemPreReport = document.getElementById("PreReport");
                 elemPreReport.innerText = textbody;
