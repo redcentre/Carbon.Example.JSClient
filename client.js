@@ -122,7 +122,7 @@ function getInfo() {
 // ══════════════════════════════════════════════════════════════════════
 function innerLogin() {
     const loginReq = {
-        id: elemTextId.value,
+        name: elemTextId.value,
         password: elemTextPass.value,
         skipCache: false
     };
@@ -134,7 +134,7 @@ function innerLogin() {
         }
     };
     showBusy(`Authentication credentials for Account id ${elemTextId.value}`);
-    const url = `${elemSelServer.value}/session/start/login/id`;
+    const url = `${elemSelServer.value}/session/start/authenticate/name`;
     fetch(url, loginOpts)
         .then(async response => {
             if (response.status == 200) {

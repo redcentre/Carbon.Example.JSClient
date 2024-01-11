@@ -9,8 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="client.css">
   <script src="client.js"></script>
-  <meta data-build-version="1.0.0" />
-  <meta data-build-time="2023-05-29 11:50 GMT+10" />
+  <meta data-build-version="1.0.1" />
+  <meta data-build-time="2024-01-11 15:51 GMT+11" />
 </head>
 <body onload="pageLoaded();">
 
@@ -24,6 +24,8 @@
             <select id="SelServer">
               <option>https://rcsapps.azurewebsites.net/carbon</option>
               <option>https://rcsapps.azurewebsites.net/carbontest</option>
+              <option>https://bayesprice.azurewebsites.net/carbon</option>
+              <option>https://bayesprice.azurewebsites.net/carbontest</option>
               <option>http://localhost:5086</option>
             </select>
           </td>
@@ -37,8 +39,8 @@
           <div class="form-group">
             <table class="LinTab">
               <tr>
-                <td><label for="TextId">Account Id</label></td>
-                <td><input type="text" class="form-control" id="TextId" maxlength="10" oninput="idChanged()" value="16499372" disabled></td>
+                <td><label for="TextId">Login Name</label></td>
+                <td><input type="text" class="form-control" id="TextId" maxlength="64" oninput="idChanged()" value="16499372" disabled></td>
                 <td><img src="img/no-input-16.png" id="ImgId" /></td>
               </tr>
               <tr>
