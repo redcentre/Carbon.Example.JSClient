@@ -13,14 +13,16 @@ table { border-collapse: collapse; }
   .LinTab td { padding: 6px 0.6em 0 0; }
   .LinTab button { min-width: 6em; }
 #TextId { width: 15em; }
-#TextPass { width: 12em; }
-#DivOverview { font-size: 90%; }
+#TextPass { width: 15em; }
+#DivOverview, #DivInstruct { font-size: 90%; }
+#DivInstruct { font-style: italic; color: darkblue; }
+  #DivInstruct img { margin: 0 4px 0 4px; }
 
 .SpecTab { }
   .SpecTab label { margin-right: 0.5em; }
   .SpecTab td { padding: 6px 0.6em 0 0; }
   .SpecTab button { min-width: 6em; }
-  .SpecTab input { width: 15em; }
+  .SpecTab input[type='text'] { width: 15em; }
 
 .JobOuter { display: grid; grid-template-columns: 25em 1fr 22em; }
 
@@ -31,7 +33,7 @@ table { border-collapse: collapse; }
   .VarTab th, .VarTab td { padding: 0 4px; }
   .VarTab tr:nth-child(odd) { background-color: aliceblue; }
 
-#PreReport { font-size:80%; overflow:scroll; }
+#PreReport { font-size: 80%; overflow: scroll; }
 #DivHtml { font-size: 80%; overflow: scroll; }
 
 .DivSpin { text-align: center; margin: auto; }

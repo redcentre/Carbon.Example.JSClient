@@ -22,9 +22,13 @@ var elemSide;
 var elemFilter;
 var elemWeight;
 var elemFormat;
+var elemChkFreq;
+var elemChkCol;
+var elemChkRow;
 var elemPreReport;
 var elemDivHtml;
 var elemSelTrees;
+var elemInstruct;
 
 let getOpts = null;
 let postOpts = null;
@@ -65,6 +69,12 @@ function runClick() {
     genTab();
 }
 // ══════════════════════════════════════════════════════════════════════
+function cellChecksChanged() {
+    if (!elemChkFreq.checked && !elemChkCol.checked && !elemChkRow.checked) {
+        elemChkFreq.checked = true;
+    }
+}
+// ══════════════════════════════════════════════════════════════════════
 function pageLoaded() {
     elemSelServer = document.getElementById("SelServer");
     elemDivSections = document.getElementById("DivSections");
@@ -90,9 +100,17 @@ function pageLoaded() {
     elemFilter = document.getElementById("TextFilter");
     elemWeight = document.getElementById("TextWeight");
     elemFormat = document.getElementById("SelFormat");
+    elemChkFreq = document.getElementById("CheckFreq");
+    elemChkCol = document.getElementById("CheckCol");
+    elemChkRow = document.getElementById("CheckRow");
     elemPreReport = document.getElementById("PreReport");
     elemDivHtml = document.getElementById("DivHtml");
     elemSelTrees = document.getElementById("SelTrees");
+    elemInstruct = document.getElementById("DivInstruct");
+    getInfo();
+}
+// ══════════════════════════════════════════════════════════════════════
+function serviceChanged() {
     getInfo();
 }
 // ══════════════════════════════════════════════════════════════════════
@@ -105,16 +123,19 @@ function getInfo() {
                 loginChanged();
                 elemTextId.focus();
                 elemDivLoginOK.hidden = false;
-                elemDivLoginOK.innerHTML = `Connected to Carbon web service version ${infodata.version}. Carbon version ${infodata.carbonVersion} Build ${infodata.carbonBuild}.`;
+                elemDivLoginErr.hidden = true;
+                elemDivLoginOK.innerHTML = `Connected to Carbon web service version ${infodata.version}. Carbon version ${infodata.carbonVersion}.`;
             }
             else {
                 let errjson = await response.json();
                 console.log(infodata);
+                elemDivLoginOK.hidden = true;
                 elemDivLoginErr.hidden = false;
                 elemDivLoginErr.innerText = `Failed to retrieve service information from ${url} - ${errjson.message}`;
             }
         })
         .catch(error => {
+            elemDivLoginOK.hidden = true;
             elemDivLoginErr.hidden = false;
             elemDivLoginErr.innerText = `Error retrieving service information from ${url} - ${error}`;
         });
@@ -223,11 +244,14 @@ function loginChanged() {
     if (logindata == null) {
         elemTextId.disabled = false;
         elemTextPass.disabled = false;
+        elemSelServer.disabled = false;
+        elemInstruct.hidden = false;
         elemBtnLogin.disabled = (elemTextId.value.length == 0 || elemTextPass.value.length == 0);
     } else {
         elemTextId.disabled = true;
         elemTextPass.disabled = true;
         elemBtnLogin.disabled = false;
+        elemSelServer.disabled = true;
     }
     elemImgId.hidden = elemTextId.value.length > 0;
     elemImgPass.hidden = elemTextPass.value.length > 0;
@@ -363,7 +387,10 @@ function getVartreeNodes() {
 function genTab() {
     const formatNum = elemFormat.value;
     const formatName = elemFormat.options[elemFormat.selectedIndex].text;
-    console.log(`format ${formatNum} | ${formatName}`);
+    const freq = elemChkFreq.checked;
+    const colpct = elemChkCol.checked;
+    const rowpct = elemChkRow.checked;
+    console.log(`format ${formatNum} | ${formatName} | ${freq} ${colpct} ${rowpct}`);
     if (elemTop.value.length == 0 || elemSide.value.length == 0) return;
     const specprops = {
         topInsert: null,
@@ -379,7 +406,9 @@ function genTab() {
         sProps: specprops,
         dProps: jobdata.dProps
     };
-    //gentabReq.dProps.output.format = formatNum;
+    gentabReq.dProps.cells.frequencies.visible = freq;
+    gentabReq.dProps.cells.columnPercents.visible = colpct;
+    gentabReq.dProps.cells.rowPercents.visible = rowpct;
     console.log(gentabReq);
     postOpts.body = JSON.stringify(gentabReq);
     showBusy(`Generating report`);
@@ -396,6 +425,7 @@ function genTab() {
                 else {
                     textbody = await response.text();
                 }
+                elemInstruct.hidden = true;
                 elemDivLoginErr.hidden = true;
                 elemDivReport.hidden = false;
                 if (formatNum == 6) {

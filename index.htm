@@ -21,7 +21,7 @@
           <td>Carbon HTML5 Demo</td>
           <td>
             <span>Service Address</span>
-            <select id="SelServer">
+            <select id="SelServer" onchange="serviceChanged()">
               <option>https://rcsapps.azurewebsites.net/carbon</option>
               <option>https://rcsapps.azurewebsites.net/carbontest</option>
               <option>https://bayesprice.azurewebsites.net/carbon</option>
@@ -40,12 +40,12 @@
             <table class="LinTab">
               <tr>
                 <td><label for="TextId">Login Name</label></td>
-                <td><input type="text" class="form-control" id="TextId" maxlength="64" oninput="idChanged()" value="16499372" disabled></td>
+                <td><input type="text" class="form-control" id="TextId" maxlength="64" oninput="idChanged()" value="CarbonGuest" disabled spellcheck="false"></td>
                 <td><img src="img/no-input-16.png" id="ImgId" /></td>
               </tr>
               <tr>
                 <td><label for="TextPass">Password</label></td>
-                <td><input type="password" class="form-control" id="TextPass" maxlength="32" oninput="passChanged()" value="C6H12O6" disabled></td>
+                <td><input type="text" class="form-control" id="TextPass" maxlength="32" oninput="passChanged()" value="C6H12O6" disabled></td>
                 <td><img src="img/no-input-16.png" id="ImgPass" /></td>
               </tr>
               <tr>
@@ -60,9 +60,16 @@
           <div>
             <div id="DivOverview">
               This application communicates with the <a href="https://rcsapps.azurewebsites.net/carbon/swagger/index.html" target="_blank">Carbon Web Service</a>
-              to implement a basic cross-tabulation reporting system. The app is implemented using plain HTML5 techniques (html + styles + JavaScript) and is a
+              to implement a basic cross-tabulation reporting system. The app is implemented using plain HTML5 techniques (HTML + CSS + JavaScript) and is a
               part of the example projects and scripts available on Red Centre Software's <a href="https://github.com/redcentre/" target="_blank">GitHub</a> page.
-              Developers can evolve this example into a more sophisticated application, perhaps using one of the popular contemporary JS frameworks.
+              Developers can expand this example into a more sophisticated application, perhaps using one of the popular contemporary JS frameworks.
+            </div>
+            <div id="DivInstruct" class="mt-2">
+              <img src="img/instruct-16.png"/> Click the Login button. Use the default Customer&nbsp;-&nbsp;Job selection. Select the variable tree <b>VarTree</b>.
+              The variables in the selected tree are listed in the middle panel.
+              Enter a variable name in the Top and Side text fields &mdash; either type the variable names directly or double-click a variable name to select it,
+              then drag and drop it into the Top and Side.
+              The text fields can be any legal GenTab syntax.
             </div>
             <div id="DivLoginOK" class="alert alert-success mt-3" hidden>
               Logged in information will be displayed here
@@ -107,17 +114,30 @@
               </tr>
               <tr>
                 <td><label for="SelFormat">Format</label></td>
-                <td><select id="SelFormat">
-                  <option value="1">TSV</option>
-                  <option value="2">CSV</option>
-                  <option value="3">SSV</option>
-                  <option value="5">XML</option>
-                  <option value="6">HTML</option>
-                  <option value="7">OXT</option>
-                  <option value="8">OXTNums</option>
-                  <option value="10">MultiCube</option>
-                  <option value="990">JSON</option>
-                  </select></td>
+                <td>
+                  <select id="SelFormat">
+                    <option value="6">HTML</option>
+                    <option value="1">TSV</option>
+                    <option value="2">CSV</option>
+                    <option value="3">SSV</option>
+                    <option value="5">XML</option>
+                    <option value="7">OXT</option>
+                    <option value="8">OXTNums</option>
+                    <option value="10">MultiCube</option>
+                    <option value="990">JSON</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <input type="checkbox" id="CheckFreq" checked onchange="cellChecksChanged()">
+                  <label for="CheckFreq">Freq</label>
+                  <input type="checkbox" id="CheckCol" onchange="cellChecksChanged()">
+                  <label for="CheckCol">Col%</label>
+                  <input type="checkbox" id="CheckRow" onchange="cellChecksChanged()">
+                  <label for="CheckRow">Row%</label>
+                </td>
               </tr>
               <tr>
                 <td></td>
