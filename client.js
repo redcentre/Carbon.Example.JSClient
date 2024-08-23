@@ -428,7 +428,7 @@ function genTab() {
                 elemInstruct.hidden = true;
                 elemDivLoginErr.hidden = true;
                 elemDivReport.hidden = false;
-                if (formatNum == 6) {
+                if (formatNum == 7) {
                     // Show the rendered HTML report.
                     elemPreReport.hidden = true;
                     elemDivHtml.hidden = false;
