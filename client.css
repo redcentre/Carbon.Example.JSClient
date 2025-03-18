@@ -15,7 +15,7 @@ table { border-collapse: collapse; }
 #TextId { width: 15em; }
 #TextPass { width: 15em; }
 #DivOverview, #DivInstruct { font-size: 90%; }
-#DivInstruct { font-style: italic; color: darkblue; }
+#DivInstruct { font-style: italic; color: darkslategrey; }
   #DivInstruct img { margin: 0 4px 0 4px; }
 
 .SpecTab { }

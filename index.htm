@@ -22,8 +22,8 @@
           <td>
             <span>Service Address</span>
             <select id="SelServer" onchange="serviceChanged()">
-              <option>https://rcsapps.azurewebsites.net/carbon</option>
               <option>https://rcsapps.azurewebsites.net/carbontest</option>
+              <option>https://rcsapps.azurewebsites.net/carbon</option>
               <option>https://bayesprice.azurewebsites.net/carbon</option>
               <option>https://bayesprice.azurewebsites.net/carbontest</option>
               <option>http://localhost:5086</option>
@@ -39,7 +39,7 @@
           <div class="form-group">
             <table class="LinTab">
               <tr>
-                <td><label for="TextId">Login Name</label></td>
+                <td><label for="TextId">Licence Name</label></td>
                 <td><input type="text" class="form-control" id="TextId" maxlength="64" oninput="idChanged()" value="CarbonGuest" disabled spellcheck="false"></td>
                 <td><img src="img/no-input-16.png" id="ImgId" /></td>
               </tr>
@@ -51,7 +51,7 @@
               <tr>
                 <td></td>
                 <td>
-                  <button id="BtnLogin" class="btn btn-primary mt-2" onclick="loginClick()" disabled>Login</button>
+                  <button id="BtnLogin" class="btn btn-primary mt-2" onclick="loginClick()" disabled>Start Session</button>
                 </td>
                 <td></td>
               </tr>
@@ -59,13 +59,13 @@
           </div>
           <div>
             <div id="DivOverview">
-              This application communicates with the <a href="https://rcsapps.azurewebsites.net/carbon/swagger/index.html" target="_blank">Carbon Web Service</a>
+              This application communicates with the <a href="https://rcsapps.azurewebsites.net/carbontest/swagger/index.html" target="_blank">Carbon Web Service</a>
               to implement a basic cross-tabulation reporting system. The app is implemented using plain HTML5 techniques (HTML + CSS + JavaScript) and is a
               part of the example projects and scripts available on Red Centre Software's <a href="https://github.com/redcentre/" target="_blank">GitHub</a> page.
               Developers can expand this example into a more sophisticated application, perhaps using one of the popular contemporary JS frameworks.
             </div>
             <div id="DivInstruct" class="mt-2">
-              <img src="img/instruct-16.png"/> Click the Login button. Use the default Customer&nbsp;-&nbsp;Job selection. Select the variable tree <b>VarTree</b>.
+              <img src="img/instruct-16.png"/> Click the Start Session button. Use the default Customer&nbsp;-&nbsp;Job selection. Select the variable tree <b>VarTree</b>.
               The variables in the selected tree are listed in the middle panel.
               Enter a variable name in the Top and Side text fields &mdash; either type the variable names directly or double-click a variable name to select it,
               then drag and drop it into the Top and Side.

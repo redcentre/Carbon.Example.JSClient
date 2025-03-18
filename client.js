@@ -182,7 +182,7 @@ function innerLogin() {
                 };
                 elemDivLoginErr.hidden = true;
                 elemDivLoginOK.hidden = false;
-                elemDivLoginOK.innerHTML = `Logged-in with account Name <b>${logindata.name}</b> - Session Id <b>${logindata.sessionId}</b>`;
+                elemDivLoginOK.innerHTML = `Authenticated account Name <b>${logindata.name}</b> - Session Id <b>${logindata.sessionId}</b>`;
                 loginChanged();
                 elemDivJob.hidden = false;
                 fillJobPick();
@@ -210,14 +210,14 @@ async function innerLogout() {
         console.log(resp);
         jobdata = null;
     }
-    const url = `${elemSelServer.value}/session/end/return`;
+    const url = `${elemSelServer.value}/session/end`;
     fetch(url, deleteOpts)
         .then(async response => {
             if (response.status == 200) {
                 let logoutdata = await response.json();
                 elemDivLoginErr.hidden = true;
                 elemDivLoginOK.hidden = false;
-                elemDivLoginOK.innerHTML = `Logout sucess. Remaining free licence count is ${logoutdata}.`;
+                elemDivLoginOK.innerHTML = `End session -> ${logoutdata}`;
                 elemDivJob.hidden = true;
                 elemDivGenTab.hidden = true;
                 elemDivReport.hidden = true;
@@ -255,7 +255,7 @@ function loginChanged() {
     }
     elemImgId.hidden = elemTextId.value.length > 0;
     elemImgPass.hidden = elemTextPass.value.length > 0;
-    elemBtnLogin.innerText = logindata == null ? "Login" : "Logout";
+    elemBtnLogin.innerText = logindata == null ? "Start Session" : "End Session";
 }
 // ══════════════════════════════════════════════════════════════════════
 function openJob(reason) {
