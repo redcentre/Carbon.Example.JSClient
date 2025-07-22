@@ -1,4 +1,4 @@
-﻿var elemSelServer;
+var elemSelServer;
 var elemDivSections;
 var elemDivLogin;
 var elemTextId;
@@ -145,7 +145,8 @@ function innerLogin() {
     const loginReq = {
         name: elemTextId.value,
         password: elemTextPass.value,
-        skipCache: false
+        skipCache: false,
+        appId: "UnitTests"
     };
     const loginOpts = {
         method: "POST",
